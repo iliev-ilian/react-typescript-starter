@@ -1,0 +1,27 @@
+{
+  "name": "my-ts-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && SET NODE_ENV=development& webpack",
+    "build:prod": "npm run clean && SET NODE_ENV=production& webpack -p",
+    "start": "npm run build && webpack-dev-server --inline",
+    "start:prod": "npm run build:prod && webpack-dev-server --inline",
+    "clean": "rimraf build/*"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "ts-loader": "^2.3.7",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0"
+  },
+  "dependencies": {
+    "@types/react": "^16.0.7",
+    "@types/react-dom": "^15.5.4",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2"
+  }
+}

@@ -1,0 +1,85 @@
+var path = require("path");
+var webpack = require("webpack");
+
+var isProd = (process.env.NODE_ENV === 'production');
+var isDevelopment = (process.env.NODE_ENV === 'development');
+
+console.log(isProd);
+console.log(isDevelopment);
+
+// Conditionally return a list of plugins to use based on the current environment.
+// Repeat this pattern for any other config key (ie: loaders, etc).
+function getPlugins() {
+    var plugins = [];
+
+    // Always expose NODE_ENV to webpack, you can now use `process.env.NODE_ENV`
+    // inside your code for any environment checks; UglifyJS will automatically
+    // drop any unreachable code.
+    plugins.push(new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': process.env.NODE_ENV
+        }
+    }));
+
+    // Conditionally add plugins for Production builds.
+    if (isProd) {
+        //plugins.push(new webpack.optimize.UglifyJsPlugin());
+    }
+    // Conditionally add plugins for Development
+    else {
+    }
+
+    return plugins;
+}
+
+var config = {
+    /* The entry point of the application. Webpack uses this information to 
+    create the dependency tree which is used to bundle the scripts.*/
+    entry: ["./src/App.tsx"],
+
+    //devtool: 'source-map',
+
+    /*
+     * The combination of path and filename tells Webpack what name to give to
+     * the final bundled JavaScript file and where to store this file.
+     */
+    output: {
+        path: path.resolve(__dirname, "build"),
+        filename: "bundle.js",
+        publicPath: "/build/",
+    },
+
+    /*
+     * resolve lets Webpack now in advance what file extensions you plan on
+     * "require"ing into the web application, and allows you to drop them
+     * in your code.
+     */
+    resolve: {
+        extensions: [".ts", ".tsx", ".js", ".jsx"]
+    },
+
+    module: {
+        /*
+         * Each loader needs an associated Regex test that goes through each
+         * of the files you've included (or in this case, all files but the
+         * ones in the excluded directories) and finds all files that pass
+         * the test. Then it will apply the loader to that file. I haven't
+         * installed ts-loader yet, but will do that shortly.
+         */
+        loaders: [
+            {
+                test: /\.tsx?$/,
+                loader: "ts-loader",
+                exclude: /node_modules/
+            }
+        ]
+    },
+
+    //plugins: getPlugins(),
+};
+
+if (isDevelopment) {
+    config.devtool = "source-map";
+}
+
+module.exports = config;
