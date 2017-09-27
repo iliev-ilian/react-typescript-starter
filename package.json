@@ -7,16 +7,19 @@
     "build": "npm run clean && SET NODE_ENV=development& webpack",
     "build:prod": "npm run clean && SET NODE_ENV=production& webpack -p",
     "start": "npm run build && webpack-dev-server",
-    "start:prod": "webpack-dev-server",
+    "start:prod": "npm run build:prod && webpack-dev-server",
     "start-static": "npm run build && http-server",
     "clean": "rimraf build/*"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^8.0.31",
+    "@types/webpack": "^3.0.12",
     "http-server": "^0.10.0",
     "rimraf": "^2.6.2",
     "ts-loader": "^2.3.7",
+    "ts-node": "^3.3.0",
     "typescript": "^2.5.2",
     "webpack": "^3.6.0"
   },
