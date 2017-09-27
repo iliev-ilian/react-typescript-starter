@@ -43,7 +43,13 @@ var config = {
     output: {
         path: path.resolve(__dirname, "build"),
         filename: "bundle.js",
-        publicPath: "/build/",
+        //publicPath: "/build/",
+    },
+
+    devServer: {
+        contentBase: './',
+        open: true,
+        inline: true
     },
 
     /*

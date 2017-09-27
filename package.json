@@ -6,8 +6,8 @@
   "scripts": {
     "build": "npm run clean && SET NODE_ENV=development& webpack",
     "build:prod": "npm run clean && SET NODE_ENV=production& webpack -p",
-    "start": "npm run build && webpack-dev-server --inline",
-    "start:prod": "npm run build:prod && webpack-dev-server --inline",
+    "start": "npm run build && webpack-dev-server",
+    "start:prod": "webpack-dev-server",
     "start-static": "npm run build && http-server",
     "clean": "rimraf build/*"
   },
