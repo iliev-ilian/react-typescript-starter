@@ -4,9 +4,6 @@ var webpack = require("webpack");
 var isProd = (process.env.NODE_ENV === 'production');
 var isDevelopment = (process.env.NODE_ENV === 'development');
 
-console.log(isProd);
-console.log(isDevelopment);
-
 // Conditionally return a list of plugins to use based on the current environment.
 // Repeat this pattern for any other config key (ie: loaders, etc).
 function getPlugins() {
@@ -78,7 +75,7 @@ var config = {
     //plugins: getPlugins(),
 };
 
-if (isDevelopment) {
+if (!isProd) {
     config.devtool = "source-map";
 }
 

@@ -1,19 +1,14 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Hello } from './components/Hello';
 
-interface HelloProps {
-    name: string;
+class App extends React.Component<{}, {}> {
+  render() {
+    return <Hello name="ilian"></Hello>;
   }
-  
-  class Hello extends React.Component<HelloProps, {}> {
-    render() {
-      return <div>Hello, {this.props.name}</div>;
-    }
-  }
-  
-  export default Hello;
+}
 
-  ReactDOM.render(
-    <Hello name="ilian"></Hello>,
-    document.getElementById('app')
+ReactDOM.render(
+  <App />,
+  document.getElementById('app')
 );
