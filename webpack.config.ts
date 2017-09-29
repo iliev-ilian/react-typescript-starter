@@ -4,14 +4,15 @@ import * as webpack from 'webpack';
 var isProd = (process.env.NODE_ENV === 'production');
 var isDevelopment = (process.env.NODE_ENV === 'development');
 
+console.log(process.env.NODE_ENV);
+
 // Conditionally return a list of plugins to use based on the current environment.
 // Repeat this pattern for any other config key (ie: loaders, etc).
 function getPlugins() {
     var plugins = [];
 
-    // Always expose NODE_ENV to webpack, you can now use `process.env.NODE_ENV`
-    // inside your code for any environment checks; UglifyJS will automatically
-    // drop any unreachable code.
+    // This way the NODE_ENV is passed to any pluagins/libraries used.
+    // These libraries could check this variable and thus load less code
     plugins.push(new webpack.DefinePlugin({
         'process.env': {
             'NODE_ENV': process.env.NODE_ENV
